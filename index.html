@@ -3,38 +3,35 @@
 
 <head>
   <meta charset="utf-8">
+  <!-- styles -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- library js -->
   <script src="angular.min.js"></script>
+  <!-- module js -->
+  <script src="Assignment2Controller.js"></script>
   <script src="app.js"></script>
   <title>Module-2 Coding Assignment</title>
 </head>
 
-<body>
-  <div ng-controller="Assignment2Controller">
-    <h1> {{ name }}</h1>
-    <tbody style="text-align: center;">
-      <tr>
-        <td colspan="2">To Buy {{ message1 }}</td>
-      </tr>
-      <div ng-repeat="item in shoppingItems">
-        <tr>
-          <td>{{$index+1}}. Buy {{ item.quantity }} {{ item.name }}</td>
-          <td><input type="button" value="Bought" ng-click="BoughtItem(item.quantity,item.name)"></td>
-        </tr>
-      </div>
-      <br><br>
-      <tr>
-        <td colspan="2">Already Bought {{ message2 }}</td>
-      </tr>
-      <div ng-repeat="item in BoughtItems">
-        <tr>
-          <td colspan="2">{{$index+1}}. Bought {{ item.quantity }} {{ item.name }}</td>
-        </tr>
-        <br>
-        
-      </div>
-
-    </tbody>
-  </div>
+<body ng-controller="Assignment2Controller as ctrl">
+  <fieldset>
+    <legend>
+      <h1> {{ ctrl.name }}</h1>
+    </legend>
+    <div>To Buy {{ ctrl.message1 }}</div>
+    <div>
+      <ul>
+        <li ng-repeat="item in ctrl.shoppingItems">{{$index+1}}. Buy {{ item.quantity }} {{ item.name }} &nbsp;<input
+            type="button" value="Bought" ng-click="ctrl.BoughtItem(item.quantity,item.name)"></li>
+      </ul>
+    </div>
+    <div>Already Bought {{ ctrl.message2 }}</div>
+    <div>
+      <ul>
+        <li ng-repeat="item in ctrl.BoughtItems">{{$index+1}}. Bought {{ item.quantity }} {{ item.name }}</li>
+      </ul>
+    </div>
+  </fieldset>
 </body>
 
 </html>
